@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EU HPC & AI Company Database</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="glass">
+        <div class="logo-area">
+            <h1>EU HPC & AI DB <span class="beta-badge">BETA</span></h1>
+        </div>
+        <div class="search-container">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="global-search" placeholder="Search companies, technologies, or keywords...">
+        </div>
+        <div class="nav-links">
+            <button class="nav-btn active" onclick="switchView('search')">Search</button>
+            <button class="nav-btn" onclick="switchView('stats')">Statistics</button>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="filters glass">
+            <div class="filter-group">
+                <h3>Country of HQ</h3>
+                <div id="country-filters" class="filter-options">
+                    <!-- Dynamic countries -->
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Primary Focus</h3>
+                <div id="focus-filters" class="filter-options">
+                    <!-- Dynamic focus categories -->
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Technologies</h3>
+                <div id="tech-filters" class="filter-options">
+                    <!-- Dynamic tags -->
+                </div>
+            </div>
+        </aside>
+
+        <main id="search-view" class="results">
+            <div class="data-warning glass">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                    </path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <span><strong>Disclaimer:</strong> This data was generated for demonstration purposes and is under no
+                    circumstances to be trusted or used for official purposes.</span>
+            </div>
+            <div class="results-info">
+                <span id="results-count">Showing 0 companies</span>
+                <div class="sort-options">
+                    <!-- Optional sorting -->
+                </div>
+            </div>
+            <div id="company-grid" class="company-grid">
+                <!-- Dynamic cards -->
+            </div>
+        </main>
+
+        <section id="stats-view" class="results" style="display: none;">
+            <div class="stats-header">
+                <h2
+                    style="font-size: 2rem; margin-bottom: 0.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                    Discovery Statistics</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Visual breakdown of the EU HPC & AI
+                    ecosystem.</p>
+            </div>
+            <div id="stats-grid" class="stats-grid">
+                <!-- Dynamic statistics widgets -->
+            </div>
+        </section>
+    </div>
+
+    <div id="company-modal" class="modal-overlay">
+        <div class="modal-content glass">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body">
+                <!-- Dynamic modal content -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
