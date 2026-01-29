@@ -154,6 +154,11 @@ header {
   gap: var(--spacer);
 }
 
+/* Mobile Toggle Hidden by Default */
+#mobile-filter-toggle {
+  display: none;
+}
+
 /* Sidebar Filters */
 aside.filters {
   width: var(--sidebar-width);
@@ -500,14 +505,94 @@ main.results {
 
 /* Responsive */
 @media (max-width: 900px) {
+  header {
+    height: auto;
+    flex-direction: column;
+    padding: 1rem var(--spacer);
+    gap: 1rem;
+  }
+
+  .logo-area {
+    display: none;
+  }
+
+  .search-container {
+    margin: 0;
+    max-width: none;
+    width: 100%;
+    order: 1;
+  }
+
+  .nav-links {
+    width: 100%;
+    order: 2;
+    margin-top: 0;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    flex: 1;
+    text-align: center;
+  }
+
   .main-layout {
     flex-direction: column;
+    padding-top: 1rem;
+  }
+
+  /* Mobile Filter Toggle */
+  #mobile-filter-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    font-weight: 700;
+    color: white;
+    font-size: 1rem;
+    border: 1px solid var(--accent-blue);
+    background: rgba(59, 130, 246, 0.1);
   }
 
   aside.filters {
-    width: 100%;
-    height: auto;
-    position: static;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90%;
+    max-width: 320px;
+    height: 100vh;
+    z-index: 2000;
+    transform: translateX(-105%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.8);
+    background: var(--bg-color);
+  }
+
+  aside.filters.active {
+    transform: translateX(0);
+  }
+
+  /* Overlay for when filters are open on mobile */
+  .filter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .filter-overlay.active {
+    display: block;
+    opacity: 1;
   }
 
   .company-grid {

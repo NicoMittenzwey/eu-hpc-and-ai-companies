@@ -209,12 +209,42 @@ function setupEventListeners() {
         }
     });
 
+    // Mobile Filter Toggle
+    const filterToggle = document.getElementById('mobile-filter-toggle');
+    const filtersSidebar = document.querySelector('aside.filters');
+
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'filter-overlay';
+    document.body.appendChild(overlay);
+
+    const toggleFilters = (show) => {
+        filtersSidebar.classList.toggle('active', show);
+        overlay.classList.toggle('active', show);
+        document.body.style.overflow = show ? 'hidden' : '';
+    };
+
+    filterToggle?.addEventListener('click', () => toggleFilters(true));
+    overlay.addEventListener('click', () => toggleFilters(false));
+
+    // Close filters when a checkbox is changed (optional but often better on mobile)
+    document.querySelectorAll('.filter-options input').forEach(input => {
+        input.addEventListener('change', () => {
+            if (window.innerWidth <= 900) {
+                // Keep it open to allow multiple selections, 
+                // but we could auto-close here if requested.
+            }
+        });
+    });
+
     // Handle Browser Back Button
     window.addEventListener('popstate', (event) => {
         const modal = document.getElementById('company-modal');
         if (modal && (!event.state || !event.state.modal)) {
             modal.style.display = 'none';
         }
+        // Also close filters on back button if open
+        toggleFilters(false);
     });
 }
 
@@ -318,7 +348,7 @@ function switchView(view) {
 
 function renderStats() {
     const grid = document.getElementById('stats-grid');
-    
+
     // 1. Country Distribution
     const countries = {};
     companies.forEach(c => {
